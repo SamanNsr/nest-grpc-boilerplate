@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package hero;
+
+service HeroService {
+  rpc UnaryCall (HeroById) returns (Hero); // Unary Call
+  rpc ClientStreamAsObservable (stream HeroById) returns (Hero); // Client Streaming
+  rpc ServerStreamAsObservable (HeroById) returns (stream Hero); // Server Streaming
+  rpc BidirectionalStreamAsObservable (stream HeroById) returns (stream Hero); // Duplex Streaming
+}
+
+message HeroById {
+  int32 id = 1;
+}
+
+message Hero {
+  int32 id = 1;
+  string name = 2;
+}
